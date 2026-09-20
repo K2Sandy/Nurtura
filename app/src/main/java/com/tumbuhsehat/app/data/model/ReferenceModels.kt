@@ -164,4 +164,8 @@ data class KalkulatorGiziHasil(
     val targetLemakGr: Double,
     val targetKarboGr: Double,
     val rekomendasiMenu: List<Recipe>,
+    /** Pengali target kalori dari status berat/usia: 1.0 = normal, 1.1 / 1.2 = dinaikkan (catch-up growth). */
+    val faktorKalori: Double = 1.0,
+    /** Porsi energi dari protein (0.125 = standar, ~0.17 = dinaikkan karena tinggi/usia di bawah normal). */
+    val proteinPersenEnergi: Double = 0.125,
 )

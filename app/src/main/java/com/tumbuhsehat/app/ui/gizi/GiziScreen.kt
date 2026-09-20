@@ -339,6 +339,31 @@ private fun TargetGiziCard(hasil: KalkulatorGiziHasil) {
                 MacroValue("Lemak", "%.0f".format(hasil.targetLemakGr), "gr")
                 MacroValue("Karbo", "%.0f".format(hasil.targetKarboGr), "gr")
             }
+            val kaloriDinaikkan = hasil.faktorKalori > 1.0
+            val proteinDinaikkan = hasil.proteinPersenEnergi > 0.125
+            if (kaloriDinaikkan || proteinDinaikkan) {
+                Column(Modifier.padding(top = 12.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                    if (kaloriDinaikkan) {
+                        Text(
+                            "Energi dinaikkan ${"%.0f".format((hasil.faktorKalori - 1.0) * 100)}% karena berat/usia di bawah normal",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = TextSecondary,
+                        )
+                    }
+                    if (proteinDinaikkan) {
+                        Text(
+                            "Porsi protein dinaikkan (~${"%.0f".format(hasil.proteinPersenEnergi * 100)}% energi) karena tinggi/usia di bawah normal",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = TextSecondary,
+                        )
+                    }
+                    Text(
+                        "Menu di bawah diurutkan sesuai kebutuhan ini. Sebaiknya konsultasikan hasilnya ke tenaga kesehatan atau posyandu.",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = TextSecondary,
+                    )
+                }
+            }
             Text(
                 "Estimasi umum per kelompok usia, bukan pengganti tabel AKG resmi",
                 style = MaterialTheme.typography.labelSmall,
