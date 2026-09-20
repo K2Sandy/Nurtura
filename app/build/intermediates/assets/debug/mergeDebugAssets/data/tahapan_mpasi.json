@@ -1,0 +1,37 @@
+{
+  "sumber": [
+    "Kemenkes RI 2023 - tahapan tekstur/frekuensi/takaran MPASI per usia",
+    "Kemenkes RI - Petunjuk Teknis Pemantauan Praktik MP-ASI Anak Usia 6-23 Bulan (2024)",
+    "WHO Guideline for Complementary Feeding of Infants and Young Children 6-23 Months of Age (2023)"
+  ],
+  "empat_syarat_mpasi_kemenkes_2024": [
+    "Tepat waktu: dimulai usia 6 bulan, tidak lebih awal maupun lebih lambat",
+    "Adekuat: memenuhi kecukupan energi, protein, dan mikronutrien untuk tumbuh kembang optimal",
+    "Diberikan dengan cara yang benar (responsive feeding)",
+    "Aman dan higienis dalam penyiapan maupun penyimpanan"
+  ],
+  "tahapan": [
+    {
+      "usia_bulan": "6-8",
+      "tekstur": "bubur kental / makanan lumat (dihaluskan)",
+      "frekuensi_menu_utama": "2-3 kali/hari",
+      "frekuensi_selingan": "1-2 kali/hari",
+      "takaran": "mulai 2-3 sendok makan per kali makan, naik bertahap hingga 1/2 mangkok (125 ml)"
+    },
+    {
+      "usia_bulan": "9-11",
+      "tekstur": "dicincang halus / makanan yang bisa dipegang bayi (finger food)",
+      "frekuensi_menu_utama": "3-4 kali/hari",
+      "frekuensi_selingan": "1-2 kali/hari",
+      "takaran": "1/2 - 3/4 mangkok ukuran 250 ml (125-200 ml)"
+    },
+    {
+      "usia_bulan": "12-23",
+      "tekstur": "makanan keluarga (tekstur normal)",
+      "frekuensi_menu_utama": "3-4 kali/hari",
+      "frekuensi_selingan": "1-2 kali/hari",
+      "takaran": "data dari sumber terpotong pada bagian ini - perlu verifikasi langsung ke dokumen Kemenkes 2023/2024 sebelum dipakai produksi"
+    }
+  ],
+  "catatan_pengembangan": "Tabel di atas cukup untuk kerangka MVP. Untuk nilai gizi tiap bahan makanan (kalori/protein/dll per menu), tetap butuh data Tabel Komposisi Pangan Indonesia (TKPI) - lihat README_sumber_data.md."
+}

@@ -1,0 +1,240 @@
+{
+  "sumber": [
+    "Jadwal Imunisasi Anak Umur 0-18 Tahun, Rekomendasi IDAI 2023 (idai.or.id)",
+    "Kemenkes RI - perluasan imunisasi dasar rutin dari 11 ke 14 jenis antigen (2024): penambahan HPV, PCV, Rotavirus, dan IPV2"
+  ],
+  "disclaimer": "Program Imunisasi Nasional (gratis di Puskesmas) kadang sedikit berbeda jadwal teknisnya dari rekomendasi lengkap IDAI (contoh: PCV program nasional di usia 2, 3, 12 bulan; sementara rekomendasi IDAI di usia 2, 4, 6 bulan + booster). Sebelum dipakai produksi, verifikasi ulang jadwal program nasional terbaru ke Kemenkes/SatuSehat atau Puskesmas setempat.",
+  "vaksin": [
+    {
+      "nama": "Hepatitis B",
+      "kategori": "wajib_nasional",
+      "jadwal": [
+        {
+          "dosis": "1",
+          "usia": "0-24 jam setelah lahir (monovalen)"
+        },
+        {
+          "dosis": "2",
+          "usia": "2 bulan (kombinasi pentavalen)"
+        },
+        {
+          "dosis": "3",
+          "usia": "3 bulan"
+        },
+        {
+          "dosis": "4",
+          "usia": "4 bulan"
+        }
+      ],
+      "catatan": "Bayi BB lahir <2000g: dosis pertama ditunda ke usia 1 bulan kecuali ibu HBsAg positif. Booster tambahan usia 18 bulan (rekomendasi IDAI)."
+    },
+    {
+      "nama": "Polio (OPV/tetes)",
+      "kategori": "wajib_nasional",
+      "jadwal": [
+        {
+          "dosis": "1",
+          "usia": "saat lahir"
+        },
+        {
+          "dosis": "2",
+          "usia": "2 bulan"
+        },
+        {
+          "dosis": "3",
+          "usia": "3 bulan"
+        },
+        {
+          "dosis": "4",
+          "usia": "4 bulan"
+        }
+      ]
+    },
+    {
+      "nama": "Polio (IPV/suntik)",
+      "kategori": "wajib_nasional",
+      "jadwal": [
+        {
+          "dosis": "IPV1",
+          "usia": "4 bulan"
+        },
+        {
+          "dosis": "IPV2",
+          "usia": "9 bulan (tambahan sejak perluasan 2024)"
+        }
+      ]
+    },
+    {
+      "nama": "BCG",
+      "kategori": "wajib_nasional",
+      "jadwal": [
+        {
+          "dosis": "1",
+          "usia": "0-1 bulan"
+        }
+      ],
+      "catatan": "Bayi dari ibu TB aktif: ditunda sampai terbukti bayi tidak terinfeksi TB."
+    },
+    {
+      "nama": "DTP-HB-Hib (pentavalen)",
+      "kategori": "wajib_nasional",
+      "jadwal": [
+        {
+          "dosis": "1",
+          "usia": "2 bulan"
+        },
+        {
+          "dosis": "2",
+          "usia": "3 bulan"
+        },
+        {
+          "dosis": "3",
+          "usia": "4 bulan"
+        },
+        {
+          "dosis": "booster 1",
+          "usia": "18 bulan"
+        },
+        {
+          "dosis": "booster 2 (Td/Tdap)",
+          "usia": "5-7 tahun, diulang lagi 10-18 tahun / program BIAS SD"
+        }
+      ]
+    },
+    {
+      "nama": "PCV (Pneumokokus)",
+      "kategori": "wajib_nasional",
+      "jadwal": [
+        {
+          "dosis": "1",
+          "usia": "2 bulan"
+        },
+        {
+          "dosis": "2",
+          "usia": "3 bulan (jadwal program nasional) / 4 bulan (rekomendasi IDAI)"
+        },
+        {
+          "dosis": "booster",
+          "usia": "12 bulan (program nasional) / 12-15 bulan (IDAI)"
+        }
+      ]
+    },
+    {
+      "nama": "Rotavirus",
+      "kategori": "wajib_nasional",
+      "jadwal": [
+        {
+          "dosis": "1",
+          "usia": "6-12 minggu"
+        },
+        {
+          "dosis": "2",
+          "usia": "+4-10 minggu dari dosis 1"
+        },
+        {
+          "dosis": "3",
+          "usia": "hanya untuk RV5, paling lambat usia 32 minggu"
+        }
+      ],
+      "catatan": "RV1 (monovalen, 2 dosis) yang dipakai program nasional sejak 2022."
+    },
+    {
+      "nama": "MR / MMR (Campak-Rubella)",
+      "kategori": "wajib_nasional",
+      "jadwal": [
+        {
+          "dosis": "1",
+          "usia": "9 bulan"
+        },
+        {
+          "dosis": "2",
+          "usia": "15-18 bulan (MR/MMR)"
+        },
+        {
+          "dosis": "3",
+          "usia": "5-7 tahun"
+        }
+      ]
+    },
+    {
+      "nama": "HPV",
+      "kategori": "wajib_nasional",
+      "jadwal": [
+        {
+          "dosis": "1",
+          "usia": "9-14 tahun (anak perempuan), atau kelas 5 SD (program BIAS)"
+        },
+        {
+          "dosis": "2",
+          "usia": "+6-15 bulan dari dosis 1, atau kelas 6 SD"
+        }
+      ],
+      "catatan": "Mulai usia 15 tahun jadwalnya 3 dosis seperti dewasa."
+    },
+    {
+      "nama": "Japanese Encephalitis (JE)",
+      "kategori": "opsional_endemis",
+      "jadwal": [
+        {
+          "dosis": "1",
+          "usia": "9 bulan"
+        },
+        {
+          "dosis": "penguat",
+          "usia": "1-2 tahun kemudian"
+        }
+      ],
+      "catatan": "Hanya untuk anak di daerah endemis atau yang akan bepergian ke sana."
+    },
+    {
+      "nama": "Varisela",
+      "kategori": "opsional",
+      "jadwal": [
+        {
+          "dosis": "2 dosis",
+          "usia": "mulai 12-18 bulan, interval 6 minggu-3 bulan"
+        }
+      ]
+    },
+    {
+      "nama": "Hepatitis A",
+      "kategori": "opsional",
+      "jadwal": [
+        {
+          "dosis": "2 dosis",
+          "usia": "mulai >=12 bulan, interval 6-18 bulan"
+        }
+      ]
+    },
+    {
+      "nama": "Tifoid",
+      "kategori": "opsional",
+      "jadwal": [
+        {
+          "dosis": "1",
+          "usia": "mulai 2 tahun, diulang tiap 3 tahun"
+        }
+      ]
+    },
+    {
+      "nama": "Influenza",
+      "kategori": "opsional",
+      "jadwal": [
+        {
+          "dosis": "tahunan",
+          "usia": "mulai 6 bulan"
+        }
+      ]
+    },
+    {
+      "nama": "Dengue",
+      "kategori": "opsional",
+      "jadwal": [
+        {
+          "dosis": "2-3 dosis tergantung jenis vaksin",
+          "usia": "6-16 tahun"
+        }
+      ]
+    }
+  ]
+}
