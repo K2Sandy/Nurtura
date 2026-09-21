@@ -79,8 +79,8 @@ fun OnboardingScreen(onSelesai: () -> Unit) {
         IconBadge(Icons.Filled.Favorite, size = 72.dp, background = PinkSoft, tint = PinkPrimary)
 
         Text(
-            "Selamat datang di TumbuhSehat",
-            style = MaterialTheme.typography.headlineSmall,
+            "Selamat datang di KawalSehat",
+            style = MaterialTheme.typography.headlineMedium,
             color = TextPrimary,
             textAlign = TextAlign.Center,
             modifier = Modifier.padding(top = 18.dp),
@@ -157,6 +157,7 @@ fun OnboardingScreen(onSelesai: () -> Unit) {
                 val siapDisimpan = nama.isNotBlank() && tanggalMillis != null &&
                     (status == StatusAwal.HAMIL || jenisKelamin != null)
 
+                Spacer(Modifier.height(28.dp))
                 Button(
                     onClick = {
                         when (status) {
@@ -170,10 +171,9 @@ fun OnboardingScreen(onSelesai: () -> Unit) {
                     colors = ButtonDefaults.buttonColors(containerColor = PinkPrimary),
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(52.dp)
-                        .padding(top = 26.dp),
+                        .height(54.dp),
                 ) {
-                    Text("Mulai", style = MaterialTheme.typography.titleSmall, color = Color.White)
+                    Text("Mulai", style = MaterialTheme.typography.titleMedium, color = Color.White)
                 }
             }
         }

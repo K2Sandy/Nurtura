@@ -187,6 +187,100 @@
           "lemak_gr": 3.6
         },
         "estimasi_biaya_rp": 2200
+      },
+      {
+        "nama": "Bubur Singkong Isi Ikan Lele dan Ayam dengan Saus Jeruk",
+        "diadaptasi_dari": "Bubur Singkong Isi Ikan dan Ayam dengan Saus Jeruk",
+        "porsi_resep": 3,
+        "bahan": [
+          "75 gr singkong putih (rebus, haluskan)",
+          "15 gr daging ikan lele fillet cincang halus",
+          "15 gr daging ayam cincang rebus",
+          "250 ml air kaldu ayam",
+          "5 gr minyak kelapa",
+          "20 gr bayam segar cincang",
+          "1 lembar daun salam",
+          "1 batang sereh",
+          "Bumbu halus: 1 siung bawang merah, 1 siung bawang putih",
+          "100 gr jeruk manis (diambil sarinya untuk saus)"
+        ],
+        "cara_buat": [
+          "Tumis bumbu halus, lalu masukkan daun salam dan sereh",
+          "Tambahkan air kaldu, masukkan singkong, lele, dan ayam cincang, aduk hingga setengah matang",
+          "Masukkan bayam, aduk hingga matang",
+          "Angkat, saring halus atau blender, sajikan dengan saus jeruk"
+        ],
+        "gizi_per_porsi": {
+          "energi_kkal": 88,
+          "protein_gr": 2.9,
+          "lemak_gr": 3.2,
+          "catatan": "lele sedikit lebih rendah lemak dari ikan kembung"
+        },
+        "estimasi_biaya_rp": 1500
+      },
+      {
+        "nama": "Bubur Sup Daging Sapi Kacang Merah",
+        "diadaptasi_dari": "Bubur Sup Daging Kacang Merah",
+        "porsi_resep": 3,
+        "bahan": [
+          "50 gr nasi",
+          "30 gr daging sapi cincang halus",
+          "25 gr telur ayam",
+          "10 gr buncis",
+          "10 gr wortel",
+          "10 gr kacang merah",
+          "10 gr bawang daun",
+          "1 batang seledri",
+          "300 ml kaldu sapi",
+          "2.5 gr minyak",
+          "Bumbu halus: 2 siung bawang merah, 2 siung bawang putih",
+          "Buah: 100 gr jeruk"
+        ],
+        "cara_buat": [
+          "Rebus kacang merah hingga empuk",
+          "Tumis bumbu halus dan daging sapi cincang hingga berubah warna",
+          "Masukkan ke dalam kaldu, tambahkan nasi, sayuran, dan telur kocok",
+          "Masak hingga matang, haluskan sesuai tekstur usia anak"
+        ],
+        "gizi_per_porsi": {
+          "energi_kkal": 108,
+          "protein_gr": 4.8,
+          "lemak_gr": 4.5,
+          "catatan": "daging sapi lebih tinggi lemak dari ayam"
+        },
+        "estimasi_biaya_rp": 1800
+      },
+      {
+        "nama": "Puding Kentang Ikan dan Telur",
+        "diadaptasi_dari": "Puding Kentang Ayam dan Telur",
+        "porsi_resep": 3,
+        "bahan": [
+          "100 gr kentang kukus, haluskan",
+          "30 gr ikan tenggiri cincang",
+          "10 gr telur puyuh",
+          "15 gr tahu potong dadu",
+          "15 gr wortel parut",
+          "10 gr labu kuning",
+          "15 ml santan",
+          "1 batang sereh",
+          "1 lembar daun salam",
+          "1 sdm minyak",
+          "50 ml kaldu ikan",
+          "Bumbu halus: 2 siung bawang merah, 2 siung bawang putih",
+          "Buah: 100 gr jeruk"
+        ],
+        "cara_buat": [
+          "Tumis bumbu halus bersama sereh dan daun salam, masukkan ikan cincang",
+          "Campurkan kentang, labu, tahu, dan wortel",
+          "Tambahkan santan dan kaldu, aduk rata, lalu campur dengan telur kocok",
+          "Tuang ke wadah tahan panas, kukus kurang lebih 20 menit"
+        ],
+        "gizi_per_porsi": {
+          "energi_kkal": 93,
+          "protein_gr": 4.4,
+          "lemak_gr": 3.3
+        },
+        "estimasi_biaya_rp": 2200
       }
     ]
   },
@@ -324,6 +418,90 @@
           "energi_kkal": 119,
           "protein_gr": 6.4,
           "lemak_gr": 4.4
+        },
+        "estimasi_biaya_rp": 2800
+      },
+      {
+        "nama": "Nasi Tim Ayam Telur Puyuh",
+        "diadaptasi_dari": "Nasi Tim Ikan Tuna Telur Puyuh",
+        "porsi_resep": 3,
+        "bahan": [
+          "115 gr nasi putih",
+          "30 gr daging ayam cincang halus",
+          "30 gr telur puyuh",
+          "15 gr wortel",
+          "10 gr tomat",
+          "7.5 gr minyak kelapa",
+          "75 ml kaldu ayam",
+          "Buah: 50 gr pepaya (haluskan untuk saus), 180 gr semangka"
+        ],
+        "cara_buat": [
+          "Masukkan semua bahan ke mangkok tim",
+          "Tambahkan kaldu ayam",
+          "Tim hingga matang",
+          "Sajikan dengan saus pepaya"
+        ],
+        "gizi_per_porsi": {
+          "energi_kkal": 118,
+          "protein_gr": 4.9,
+          "lemak_gr": 4.0
+        },
+        "estimasi_biaya_rp": 2300
+      },
+      {
+        "nama": "Nasi Tim Udang Sayuran",
+        "diadaptasi_dari": "Nasi Tim Ayam Lele Cincang",
+        "porsi_resep": 3,
+        "bahan": [
+          "100 gr nasi putih",
+          "40 gr udang cincang halus",
+          "10 gr wortel",
+          "5 ml minyak goreng",
+          "10 ml santan kental",
+          "1.5 sdm bawang bombay iris halus",
+          "200 ml kaldu udang",
+          "Buah: 180 gr semangka"
+        ],
+        "cara_buat": [
+          "Masukkan nasi, udang, bawang bombay, minyak, dan santan ke mangkok tim",
+          "Tambahkan kaldu udang",
+          "Tim bersama wortel hingga matang"
+        ],
+        "gizi_per_porsi": {
+          "energi_kkal": 115,
+          "protein_gr": 4.2,
+          "lemak_gr": 4.6
+        },
+        "estimasi_biaya_rp": 2000
+      },
+      {
+        "nama": "Tim Bubur Manado Ayam dan Tahu",
+        "diadaptasi_dari": "Tim Bubur Manado Daging dan Udang",
+        "porsi_resep": 3,
+        "bahan": [
+          "50 gr nasi putih",
+          "40 gr labu kuning potong dadu",
+          "40 gr ayam cincang",
+          "30 gr tahu potong dadu",
+          "20 gr jagung pipil",
+          "10 gr bayam",
+          "5 ml minyak goreng",
+          "Garam secukupnya",
+          "10 gr daun bawang iris",
+          "100 ml kaldu ayam",
+          "Bumbu halus: 1 siung bawang merah, 1 siung bawang putih",
+          "Buah: 180 gr buah naga"
+        ],
+        "cara_buat": [
+          "Tumis bumbu halus hingga harum",
+          "Masukkan ayam dan tahu, aduk hingga ayam berubah warna",
+          "Tambahkan kaldu, lalu masukkan nasi, labu, jagung, dan bayam",
+          "Masak hingga kuah menyusut dan teksturnya lembut"
+        ],
+        "gizi_per_porsi": {
+          "energi_kkal": 111,
+          "protein_gr": 5.6,
+          "lemak_gr": 3.6
         },
         "estimasi_biaya_rp": 2800
       }
@@ -470,6 +648,88 @@
           "lemak_gr": 9.0
         },
         "estimasi_biaya_rp": 4300
+      },
+      {
+        "nama": "Nasi Sup Telur Puyuh Bola Ikan",
+        "diadaptasi_dari": "Nasi Sup Telur Puyuh Bola Tahu Ayam",
+        "porsi_resep": 3,
+        "bahan": [
+          "150 gr nasi putih",
+          "90 gr ikan tenggiri cincang (untuk bola-bola)",
+          "60 gr telur puyuh rebus",
+          "30 gr wortel",
+          "30 gr jagung pipil",
+          "30 gr brokoli",
+          "15 gr tepung tapioka",
+          "Pelengkap: seledri, daun bawang, bawang goreng",
+          "Buah: 135 gr melon"
+        ],
+        "cara_buat": [
+          "Campur ikan, tepung tapioka, dan bumbu menjadi adonan",
+          "Bentuk adonan menjadi bola-bola kecil",
+          "Rebus bola ikan dalam air mendidih bersama sayuran dan telur puyuh",
+          "Sajikan dengan nasi dan taburan pelengkap"
+        ],
+        "gizi_per_porsi": {
+          "energi_kkal": 255,
+          "protein_gr": 12.8,
+          "lemak_gr": 9.5
+        },
+        "estimasi_biaya_rp": 2800
+      },
+      {
+        "nama": "Nasi Soto Ikan Kuah Kuning",
+        "diadaptasi_dari": "Nasi Soto Ayam Kuah Kuning",
+        "porsi_resep": 3,
+        "bahan": [
+          "150 gr nasi",
+          "100 gr ikan kakap fillet",
+          "10 gr soun",
+          "60 gr telur puyuh",
+          "30 gr toge",
+          "10 gr minyak goreng",
+          "Bumbu aromatik: serai, daun salam, daun jeruk, laos",
+          "Bumbu halus: kunyit, kemiri, jahe, bawang merah, bawang putih",
+          "Pelengkap: daun bawang, seledri, bawang goreng"
+        ],
+        "cara_buat": [
+          "Rebus ikan bersama bumbu aromatik",
+          "Tumis bumbu halus hingga harum, masukkan ke rebusan",
+          "Masak hingga kuah kuning matang dan meresap",
+          "Sajikan dengan nasi, soun, toge, telur puyuh, dan pelengkap"
+        ],
+        "gizi_per_porsi": {
+          "energi_kkal": 245,
+          "protein_gr": 11.2,
+          "lemak_gr": 9.0
+        },
+        "estimasi_biaya_rp": 2800
+      },
+      {
+        "nama": "Nugget Ikan Sayuran",
+        "diadaptasi_dari": "Nugget Tempe Ayam Sayuran",
+        "porsi_resep": 3,
+        "bahan": [
+          "250 gr ikan tenggiri cincang halus",
+          "100 gr telur ayam kocok",
+          "50 gr wortel",
+          "50 gr keju parut",
+          "10 gr bawang daun",
+          "Tepung terigu dan tapioka secukupnya",
+          "Pelapis: tepung terigu, tepung panir"
+        ],
+        "cara_buat": [
+          "Campur semua bahan isi hingga rata",
+          "Cetak di loyang, kukus 30 menit",
+          "Dinginkan lalu potong sesuai selera",
+          "Lapisi dengan tepung basah dan tepung panir, lalu goreng"
+        ],
+        "gizi_per_porsi": {
+          "energi_kkal": 205,
+          "protein_gr": 13.5,
+          "lemak_gr": 8.5
+        },
+        "estimasi_biaya_rp": 4300
       }
     ]
   },
@@ -519,6 +779,89 @@
           "energi_kkal": 468,
           "protein_gr": 14.4,
           "lemak_gr": 17.4
+        },
+        "estimasi_biaya_rp": 5500
+      },
+      {
+        "nama": "Nasi Bakar Ikan Santan",
+        "diadaptasi_dari": "Nasi Bakar Ayam Santan",
+        "porsi_resep": 3,
+        "bahan": [
+          "150 gr beras putih (untuk nasi gurih)",
+          "150 gr ikan kakap potong kotak",
+          "60 gr tahu",
+          "30 gr bayam",
+          "30 gr wortel",
+          "50 ml santan kental",
+          "Bumbu halus: bawang merah, bawang putih, ketumbar, kemiri, jinten",
+          "Daun pisang untuk membungkus",
+          "Buah: 300 gr pepaya"
+        ],
+        "cara_buat": [
+          "Masak nasi gurih",
+          "Tumis bumbu halus, masukkan ikan, santan, dan sayuran hingga matang",
+          "Bungkus nasi dan isian dengan daun pisang",
+          "Kukus, lalu panggang sebentar hingga harum"
+        ],
+        "gizi_per_porsi": {
+          "energi_kkal": 405,
+          "protein_gr": 19.5,
+          "lemak_gr": 16.8
+        },
+        "estimasi_biaya_rp": 6000
+      },
+      {
+        "nama": "Nasi Masak Ikan Kecap Sayur",
+        "diadaptasi_dari": "Nasi Masak Ayam Kecap Sayur",
+        "porsi_resep": 3,
+        "bahan": [
+          "300 gr nasi putih",
+          "120 gr ikan dori fillet, potong dadu",
+          "60 gr telur puyuh rebus",
+          "150 gr tahu putih potong dadu",
+          "100 gr pakcoy",
+          "40 gr kecap manis",
+          "Bumbu: bawang putih, bawang bombay",
+          "Buah: 300 gr jeruk"
+        ],
+        "cara_buat": [
+          "Tumis bawang putih dan bawang bombay hingga harum",
+          "Masukkan ikan, masak hingga matang",
+          "Tambahkan tahu, telur puyuh, pakcoy, dan kecap manis",
+          "Masak hingga semua bahan matang, sajikan dengan nasi"
+        ],
+        "gizi_per_porsi": {
+          "energi_kkal": 395,
+          "protein_gr": 20.5,
+          "lemak_gr": 15.2
+        },
+        "estimasi_biaya_rp": 6500
+      },
+      {
+        "nama": "Bola-bola Nasi Rabuk Ayam",
+        "diadaptasi_dari": "Bola-bola Nasi Rabuk Ikan",
+        "porsi_resep": 3,
+        "bahan": [
+          "150 gr beras (dimasak menjadi nasi)",
+          "50 gr rabuk/abon ayam",
+          "18 gr buncis iris",
+          "10 gr wortel cincang",
+          "45 gr jagung pipil cincang",
+          "50 gr tepung terigu",
+          "30 gr telur ayam",
+          "Pelapis: telur dan tepung panir",
+          "Buah: 300 gr buah naga"
+        ],
+        "cara_buat": [
+          "Campur nasi, abon ayam, sayuran, tepung, dan telur hingga kalis",
+          "Bentuk adonan menjadi bola-bola",
+          "Lapisi dengan telur lalu tepung panir",
+          "Goreng hingga kuning keemasan"
+        ],
+        "gizi_per_porsi": {
+          "energi_kkal": 445,
+          "protein_gr": 13.8,
+          "lemak_gr": 15.9
         },
         "estimasi_biaya_rp": 5500
       }
@@ -576,6 +919,81 @@
           "lemak_gr": 27.9
         },
         "estimasi_biaya_rp": 13000
+      },
+      {
+        "nama": "Nasi Kuning Harum Ayam Balado",
+        "diadaptasi_dari": "Nasi Kuning Harum Rampa Ikan Tuna Balado",
+        "porsi_resep": 3,
+        "bahan": [
+          "170 gr beras + 30 gr beras ketan (untuk nasi kuning, bumbu lengkap)",
+          "120 gr ayam potong",
+          "Bumbu balado: cabai merah, bawang merah, bawang putih",
+          "Tumisan sayur pendamping",
+          "Buah: 540 gr semangka"
+        ],
+        "cara_buat": [
+          "Masak nasi kuning dengan bumbu lengkap",
+          "Ungkep lalu goreng ayam",
+          "Tumis bumbu balado, siramkan ke ayam",
+          "Sajikan bersama tumisan sayur pendamping"
+        ],
+        "gizi_per_porsi": {
+          "energi_kkal": 665,
+          "protein_gr": 32.0,
+          "lemak_gr": 24.5
+        },
+        "estimasi_biaya_rp": 11000
+      },
+      {
+        "nama": "Liwet Ayam Goreng dan Kari Daun Singkong",
+        "diadaptasi_dari": "Liwet Ikan Goreng dan Kari Daun Singkong dan Ebi",
+        "porsi_resep": 3,
+        "bahan": [
+          "300 gr ayam (dibagi 3 potong)",
+          "Bumbu ungkep: bawang putih, jeruk nipis, garam",
+          "Nasi liwet dengan bumbu aromatik lengkap",
+          "Daun singkong, santan, dan teri medan untuk tumisan",
+          "Buah: 325 gr belimbing"
+        ],
+        "cara_buat": [
+          "Ungkep ayam dengan bumbu, lalu goreng",
+          "Masak nasi liwet dengan bumbu aromatik",
+          "Tumis daun singkong dengan santan dan teri",
+          "Sajikan semuanya bersama"
+        ],
+        "gizi_per_porsi": {
+          "energi_kkal": 610,
+          "protein_gr": 38.5,
+          "lemak_gr": 22.0
+        },
+        "estimasi_biaya_rp": 12000
+      },
+      {
+        "nama": "Siomay Ikan Udang Komplit",
+        "diadaptasi_dari": "Siomay Ayam Udang Komplit",
+        "porsi_resep": 3,
+        "bahan": [
+          "150 gr ikan tenggiri cincang",
+          "90 gr udang cincang kasar",
+          "80 ml air es",
+          "Tepung tapioka, terigu, dan maizena",
+          "Kulit pangsit",
+          "Pelengkap: tahu, pare, kentang, telur rebus (dikukus)",
+          "Bumbu kacang lengkap",
+          "Buah: 300 gr melon"
+        ],
+        "cara_buat": [
+          "Campur ikan, udang, air es, dan tepung menjadi adonan",
+          "Isikan adonan ke kulit pangsit",
+          "Kukus siomay bersama pelengkap hingga matang",
+          "Sajikan dengan bumbu kacang"
+        ],
+        "gizi_per_porsi": {
+          "energi_kkal": 515,
+          "protein_gr": 30.5,
+          "lemak_gr": 20.5
+        },
+        "estimasi_biaya_rp": 10000
       }
     ]
   }

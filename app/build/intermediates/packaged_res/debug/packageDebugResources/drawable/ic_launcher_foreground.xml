@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- KawalSehat mark: shield (mengawal) + heart (kasih ibu) + sprout (tumbuh).
+     Drawn inside the 66dp adaptive-icon safe zone (21..87). -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <group
+        android:pivotX="54"
+        android:pivotY="54"
+        android:scaleX="0.88"
+        android:scaleY="0.88">
+        <!-- shield shadow -->
+        <path
+            android:pathData="M54,28 C61,32.5 68.5,34.5 77,35 L77,53 C77,67.5 67.5,78 54,84 C40.5,78 31,67.5 31,53 L31,35 C39.5,34.5 47,32.5 54,28 Z"
+            android:fillColor="#26000000" />
+        <!-- shield -->
+        <path
+            android:pathData="M54,26 C61,30.5 68.5,32.5 77,33 L77,51 C77,65.5 67.5,76 54,82 C40.5,76 31,65.5 31,51 L31,33 C39.5,32.5 47,30.5 54,26 Z"
+            android:fillColor="#FFFFFFFF" />
+        <!-- sprout stem -->
+        <path
+            android:pathData="M54,49 L54,40"
+            android:strokeColor="#FF5FAE7E"
+            android:strokeWidth="2"
+            android:strokeLineCap="round" />
+        <!-- sprout leaves -->
+        <path
+            android:pathData="M54,43.5 C49.5,43.5 46.5,40.8 46.5,36.5 C51,36.5 54,39.2 54,43.5 Z"
+            android:fillColor="#FF6FC18D" />
+        <path
+            android:pathData="M54,41 C54,36.7 57,34 61.5,34 C61.5,38.3 58.5,41 54,41 Z"
+            android:fillColor="#FF5FAE7E" />
+        <!-- heart -->
+        <path
+            android:pathData="M54,68 C46.5,62 41,57.5 41,51.5 C41,47.6 44,44.8 47.6,44.8 C50.4,44.8 52.8,46.3 54,48.6 C55.2,46.3 57.6,44.8 60.4,44.8 C64,44.8 67,47.6 67,51.5 C67,57.5 61.5,62 54,68 Z"
+            android:fillColor="#FFD4577E" />
+        <!-- heart shine -->
+        <path
+            android:pathData="M45.2,50.8 C45.2,49.2 46.4,48 48,48"
+            android:strokeColor="#80FFFFFF"
+            android:strokeWidth="1.6"
+            android:strokeLineCap="round" />
+    </group>
+</vector>

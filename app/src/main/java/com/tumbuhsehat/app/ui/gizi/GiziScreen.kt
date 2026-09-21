@@ -4,17 +4,24 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
@@ -24,6 +31,7 @@ import androidx.compose.material.icons.filled.ChildCare
 import androidx.compose.material.icons.filled.ExpandLess
 import androidx.compose.material.icons.filled.ExpandMore
 import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.Lightbulb
 import androidx.compose.material.icons.filled.Restaurant
 import androidx.compose.material.icons.filled.Wallet
 import androidx.compose.material3.Card
@@ -48,6 +56,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.tumbuhsehat.app.TumbuhSehatApplication
 import com.tumbuhsehat.app.data.model.KalkulatorGiziHasil
@@ -59,6 +68,7 @@ import com.tumbuhsehat.app.ui.components.IconBadge
 import com.tumbuhsehat.app.ui.components.PageHeader
 import com.tumbuhsehat.app.ui.theme.PinkPrimary
 import com.tumbuhsehat.app.ui.theme.PinkPrimaryDark
+import com.tumbuhsehat.app.ui.theme.PinkSoft
 import com.tumbuhsehat.app.ui.theme.PinkSoftStrong
 import com.tumbuhsehat.app.ui.theme.ShapeCard
 import com.tumbuhsehat.app.ui.theme.StatusAlertBg
@@ -103,13 +113,6 @@ fun GiziScreen() {
             verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
             if (state.isPregnancy) {
-                item {
-                    Text(
-                        "Trimester ${state.trimester}",
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = TextSecondary,
-                    )
-                }
                 state.portionGuide?.let { guide ->
                     item { PortionGuideCard(trimester = state.trimester, guide = guide) }
                 }
@@ -484,11 +487,35 @@ private fun FilterAnggaranSection(
     }
 }
 
+/** Satu kelompok makanan di panduan porsi: emoji + warna aksen supaya tiap baris mudah dikenali sekilas. */
+private data class KelompokPorsi(
+    val emoji: String,
+    val label: String,
+    val porsi: String,
+    val satuan: String,
+    val bg: Color,
+    val accent: Color,
+)
+
+/** "6 porsi/hari" -> ("6", "porsi/hari"); "8-12 gelas/hari" -> ("8-12", "gelas/hari"). */
+private fun pisahAngka(teks: String): Pair<String, String> {
+    val m = Regex("^\\s*(\\d+(?:\\s*[-–]\\s*\\d+)?)\\s*(.*)$").find(teks) ?: return "" to teks
+    return m.groupValues[1].replace(" ", "") to m.groupValues[2]
+}
+
 @Composable
 private fun PortionGuideCard(trimester: Int, guide: com.tumbuhsehat.app.data.model.PortionGuide) {
     fun pilihPorsi(fp: com.tumbuhsehat.app.data.model.FoodPortion): String =
         fp.semua_trimester
             ?: if (trimester == 1) fp.trimester_1 ?: "-" else fp.trimester_2_3 ?: "-"
+
+    val kelompok = listOf(
+        KelompokPorsi("🍚", "Makanan pokok", pilihPorsi(guide.makanan_pokok), guide.makanan_pokok.satuan_porsi, Color(0xFFFFF4E0), Color(0xFFD9922A)),
+        KelompokPorsi("🥦", "Sayur", pilihPorsi(guide.sayur), guide.sayur.satuan_porsi, Color(0xFFE7F4DE), Color(0xFF4E9E6C)),
+        KelompokPorsi("🍊", "Buah", pilihPorsi(guide.buah), guide.buah.satuan_porsi, Color(0xFFFFECDD), Color(0xFFE67A2E)),
+        KelompokPorsi("🐟", "Protein hewani", pilihPorsi(guide.protein_hewani), guide.protein_hewani.satuan_porsi, Color(0xFFFDE7EE), PinkPrimary),
+        KelompokPorsi("🥜", "Protein nabati", pilihPorsi(guide.protein_nabati), guide.protein_nabati.satuan_porsi, Color(0xFFF1ECE2), Color(0xFF9C7A52)),
+    )
 
     Card(
         modifier = Modifier.fillMaxWidth(),
@@ -499,36 +526,124 @@ private fun PortionGuideCard(trimester: Int, guide: com.tumbuhsehat.app.data.mod
     ) {
         Column(Modifier.padding(18.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                IconBadge(Icons.Filled.Restaurant, size = 34.dp)
+                IconBadge(Icons.Filled.Restaurant, size = 38.dp)
+                Column(Modifier.padding(start = 12.dp).weight(1f)) {
+                    Text("Panduan porsi harian", style = MaterialTheme.typography.titleMedium, color = TextPrimary)
+                    Text(
+                        "Anjuran Kemenkes RI untuk ibu hamil",
+                        style = MaterialTheme.typography.labelSmall,
+                        color = TextMuted,
+                        modifier = Modifier.padding(top = 2.dp),
+                    )
+                }
                 Text(
-                    "Panduan porsi harian",
-                    style = MaterialTheme.typography.titleSmall,
-                    color = TextPrimary,
+                    "Trimester $trimester",
+                    style = MaterialTheme.typography.labelLarge,
+                    color = Color.White,
+                    modifier = Modifier
+                        .padding(start = 8.dp)
+                        .background(PinkPrimary, RoundedCornerShape(50))
+                        .padding(horizontal = 12.dp, vertical = 6.dp),
+                )
+            }
+
+            Column(Modifier.padding(top = 16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                kelompok.forEach { KelompokPorsiRow(it) }
+            }
+
+            Row(
+                Modifier.fillMaxWidth().padding(top = 12.dp).height(IntrinsicSize.Min),
+                horizontalArrangement = Arrangement.spacedBy(10.dp),
+            ) {
+                SuplemenTile("💊", "Tablet tambah darah", guide.tablet_tambah_darah, Modifier.weight(1f).fillMaxHeight())
+                SuplemenTile("💧", "Air putih", guide.air_putih, Modifier.weight(1f).fillMaxHeight())
+            }
+
+            Row(
+                Modifier
+                    .fillMaxWidth()
+                    .padding(top = 12.dp)
+                    .background(PinkSoft, RoundedCornerShape(16.dp))
+                    .padding(14.dp),
+            ) {
+                Icon(Icons.Filled.Lightbulb, contentDescription = null, tint = PinkPrimaryDark, modifier = Modifier.size(18.dp))
+                Text(
+                    guide.catatan_lain.replaceFirstChar { it.uppercase() }.trimEnd('.') + ".",
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = PinkPrimaryDark,
                     modifier = Modifier.padding(start = 10.dp),
                 )
             }
-            PortionLine("Makanan pokok", pilihPorsi(guide.makanan_pokok), guide.makanan_pokok.satuan_porsi)
-            PortionLine("Sayur", pilihPorsi(guide.sayur), guide.sayur.satuan_porsi)
-            PortionLine("Buah", pilihPorsi(guide.buah), guide.buah.satuan_porsi)
-            PortionLine("Protein hewani", pilihPorsi(guide.protein_hewani), guide.protein_hewani.satuan_porsi)
-            PortionLine("Protein nabati", pilihPorsi(guide.protein_nabati), guide.protein_nabati.satuan_porsi)
-            PortionLine("Tablet tambah darah", guide.tablet_tambah_darah, null)
-            PortionLine("Air putih", guide.air_putih, null)
         }
     }
 }
 
 @Composable
-private fun PortionLine(label: String, value: String, satuan: String?) {
+private fun KelompokPorsiRow(k: KelompokPorsi) {
+    val (angka, unit) = pisahAngka(k.porsi)
+    val jumlah = angka.toIntOrNull()
+
     Row(
-        Modifier.fillMaxWidth().padding(top = 14.dp),
-        horizontalArrangement = Arrangement.SpaceBetween,
+        Modifier
+            .fillMaxWidth()
+            .background(k.bg, RoundedCornerShape(16.dp))
+            .padding(12.dp),
+        verticalAlignment = Alignment.CenterVertically,
     ) {
-        Text(label, style = MaterialTheme.typography.bodyMedium, color = TextSecondary, modifier = Modifier.padding(end = 12.dp))
-        Column(horizontalAlignment = Alignment.End) {
-            Text(value, style = MaterialTheme.typography.titleSmall, color = TextPrimary)
-            if (satuan != null) {
-                Text(satuan, style = MaterialTheme.typography.labelSmall, color = TextMuted, modifier = Modifier.padding(top = 2.dp))
+        Box(
+            Modifier.size(42.dp).background(Color.White, CircleShape),
+            contentAlignment = Alignment.Center,
+        ) {
+            Text(k.emoji, fontSize = 22.sp)
+        }
+        Column(Modifier.padding(start = 12.dp).weight(1f)) {
+            Text(k.label, style = MaterialTheme.typography.titleSmall, color = TextPrimary)
+            Text(
+                k.satuan,
+                style = MaterialTheme.typography.labelSmall,
+                color = TextSecondary,
+                modifier = Modifier.padding(top = 2.dp),
+            )
+            if (jumlah != null) {
+                // Satu titik per porsi - bantu ibu "menghitung" porsi hariannya sekilas
+                Row(Modifier.padding(top = 7.dp), horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+                    repeat(jumlah.coerceAtMost(8)) {
+                        Box(Modifier.size(7.dp).background(k.accent, CircleShape))
+                    }
+                }
+            }
+        }
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier.padding(start = 10.dp),
+        ) {
+            Text(angka.ifEmpty { k.porsi }, style = MaterialTheme.typography.headlineSmall, color = k.accent)
+            if (angka.isNotEmpty()) {
+                Text(unit, style = MaterialTheme.typography.labelSmall, color = TextMuted)
+            }
+        }
+    }
+}
+
+@Composable
+private fun SuplemenTile(emoji: String, label: String, value: String, modifier: Modifier = Modifier) {
+    val (angka, unit) = pisahAngka(value)
+    Column(
+        modifier
+            .border(1.dp, PinkSoftStrong, RoundedCornerShape(16.dp))
+            .padding(12.dp),
+    ) {
+        Text(emoji, fontSize = 20.sp)
+        Text(label, style = MaterialTheme.typography.labelLarge, color = TextSecondary, modifier = Modifier.padding(top = 6.dp))
+        Row(verticalAlignment = Alignment.Bottom, modifier = Modifier.padding(top = 2.dp)) {
+            Text(angka.ifEmpty { value }, style = MaterialTheme.typography.titleLarge, color = TextPrimary)
+            if (angka.isNotEmpty()) {
+                Text(
+                    unit,
+                    style = MaterialTheme.typography.labelSmall,
+                    color = TextMuted,
+                    modifier = Modifier.padding(start = 4.dp, bottom = 3.dp),
+                )
             }
         }
     }
@@ -552,18 +667,28 @@ private fun RecipeCard(recipe: Recipe) {
                 IconBadge(Icons.Filled.Restaurant, size = 38.dp)
                 Column(Modifier.padding(start = 12.dp).weight(1f)) {
                     Text(recipe.nama, style = MaterialTheme.typography.titleSmall, color = TextPrimary)
+                    recipe.diadaptasi_dari?.let {
+                        Text(
+                            "Variasi dari: $it",
+                            style = MaterialTheme.typography.labelSmall,
+                            color = TextSecondary,
+                            modifier = Modifier.padding(top = 3.dp),
+                        )
+                    }
                     Text(
                         "${recipe.gizi_per_porsi.energi_kkal} kkal · ${recipe.gizi_per_porsi.protein_gr}g protein · ${recipe.gizi_per_porsi.lemak_gr}g lemak",
                         style = MaterialTheme.typography.labelSmall,
                         color = TextMuted,
                         modifier = Modifier.padding(top = 5.dp),
                     )
-                    Text(
-                        "≈ Rp ${"%,d".format(recipe.estimasi_biaya_rp).replace(',', '.')} / porsi",
-                        style = MaterialTheme.typography.labelSmall,
-                        color = PinkPrimaryDark,
-                        modifier = Modifier.padding(top = 5.dp),
-                    )
+                    if (recipe.estimasi_biaya_rp > 0) {
+                        Text(
+                            "≈ Rp ${"%,d".format(recipe.estimasi_biaya_rp).replace(',', '.')} / porsi",
+                            style = MaterialTheme.typography.labelSmall,
+                            color = PinkPrimaryDark,
+                            modifier = Modifier.padding(top = 5.dp),
+                        )
+                    }
                 }
                 Icon(
                     if (expanded) Icons.Filled.ExpandLess else Icons.Filled.ExpandMore,

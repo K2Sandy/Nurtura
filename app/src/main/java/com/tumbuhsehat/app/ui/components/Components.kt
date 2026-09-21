@@ -235,10 +235,10 @@ fun PageHeader(icon: ImageVector, title: String, modifier: Modifier = Modifier) 
             .padding(top = 14.dp, bottom = 20.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        IconBadge(icon, size = 84.dp)
+        IconBadge(icon, size = 72.dp)
         Text(
             title,
-            style = MaterialTheme.typography.headlineSmall,
+            style = MaterialTheme.typography.headlineMedium,
             color = TextPrimary,
             modifier = Modifier.padding(top = 12.dp),
         )

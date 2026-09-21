@@ -1,6 +1,9 @@
 package com.tumbuhsehat.app.ui.navigation
 
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -17,9 +20,11 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -28,6 +33,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.tumbuhsehat.app.R
 import com.tumbuhsehat.app.TumbuhSehatApplication
 import com.tumbuhsehat.app.ui.beranda.BerandaScreen
 import com.tumbuhsehat.app.ui.components.BottomNavDestination
@@ -108,12 +114,20 @@ private fun AppTopBar() {
     ) {
         CenterAlignedTopAppBar(
             title = {
-                Text(
-                    "TumbuhSehat",
-                    fontWeight = FontWeight.Bold,
-                    color = PinkPrimaryDark,
-                    style = MaterialTheme.typography.titleLarge,
-                )
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Image(
+                        painterResource(R.drawable.ic_logo),
+                        contentDescription = null,
+                        modifier = Modifier.size(30.dp),
+                    )
+                    Text(
+                        "KawalSehat",
+                        fontWeight = FontWeight.Bold,
+                        color = PinkPrimaryDark,
+                        style = MaterialTheme.typography.titleLarge,
+                        modifier = Modifier.padding(start = 8.dp),
+                    )
+                }
             },
             colors = TopAppBarDefaults.centerAlignedTopAppBarColors(containerColor = Color.Transparent),
         )

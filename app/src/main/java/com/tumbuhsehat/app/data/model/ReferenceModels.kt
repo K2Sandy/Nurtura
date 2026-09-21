@@ -116,6 +116,8 @@ data class PregnancyRecipeGroup(
 @Serializable
 data class Recipe(
     val nama: String,
+    /** Nama resep asli di buku Kemenkes kalau resep ini variasi (bahan protein diganti). */
+    val diadaptasi_dari: String? = null,
     val porsi_resep: Int,
     val bahan: List<String> = emptyList(),
     val cara_buat: List<String> = emptyList(),
