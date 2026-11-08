@@ -7,8 +7,10 @@ import com.tumbuhsehat.app.data.local.ProfileEntity
 import com.tumbuhsehat.app.data.local.ReminderEntity
 import com.tumbuhsehat.app.data.local.TipePengingat
 import com.tumbuhsehat.app.data.local.TipeProfil
+import com.tumbuhsehat.app.data.model.ImmunizationDatabase
 import com.tumbuhsehat.app.reminder.ReminderScheduler
 import kotlinx.coroutines.flow.Flow
+import java.util.Calendar
 
 /**
  * Business-logic layer sitting on top of Room + the static reference
@@ -84,6 +86,59 @@ class UserRepository(
                 }
             }
         db.immunizationRecordDao().insertAll(rows)
+        buatPengingatImunisasiOtomatis(profileId, schedule)
+    }
+
+    /**
+     * Jadwal imunisasi otomatis: tanggal tiap dosis wajib dihitung dari tanggal lahir anak
+     * (target_bulan / target_minggu di jadwal_imunisasi.json), lalu dibuatkan pengingat lokal.
+     * Dosis yang jatuh di tanggal sama digabung jadi satu pengingat. Tanggal yang sudah lewat
+     * tidak dibuatkan pengingat (tetap ada di checklist imunisasi).
+     */
+    private suspend fun buatPengingatImunisasiOtomatis(profileId: Long, schedule: ImmunizationDatabase) {
+        val tanggalLahir = db.profileDao().getById(profileId)?.tanggalLahirMillis ?: return
+        val sekarang = System.currentTimeMillis()
+
+        data class Target(val tanggalMillis: Long, val label: String, val dosis: String)
+
+        val targets = schedule.vaksin
+            .filter { it.kategori == "wajib_nasional" }
+            .flatMap { vaksin ->
+                vaksin.jadwal.mapNotNull { dose ->
+                    val cal = Calendar.getInstance().apply {
+                        timeInMillis = tanggalLahir
+                        set(Calendar.HOUR_OF_DAY, 8)
+                        set(Calendar.MINUTE, 0)
+                        set(Calendar.SECOND, 0)
+                        set(Calendar.MILLISECOND, 0)
+                    }
+                    val label = when {
+                        dose.target_minggu != null -> {
+                            cal.add(Calendar.DAY_OF_YEAR, dose.target_minggu * 7)
+                            "${dose.target_minggu} minggu"
+                        }
+                        dose.target_bulan != null -> {
+                            cal.add(Calendar.MONTH, dose.target_bulan)
+                            if (dose.target_bulan == 0) "saat lahir" else "${dose.target_bulan} bulan"
+                        }
+                        else -> return@mapNotNull null
+                    }
+                    Target(cal.timeInMillis, label, "${vaksin.nama} (dosis ${dose.dosis})")
+                }
+            }
+            .filter { it.tanggalMillis >= sekarang }
+
+        targets.groupBy { it.tanggalMillis }
+            .toSortedMap()
+            .forEach { (tanggal, grup) ->
+                buatPengingat(
+                    profileId = profileId,
+                    judul = "Imunisasi usia ${grup.first().label}",
+                    deskripsi = grup.joinToString(", ") { it.dosis },
+                    tanggalMillis = tanggal,
+                    tipe = TipePengingat.IMUNISASI,
+                )
+            }
     }
 
     // ---- Growth ----

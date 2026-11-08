@@ -11,19 +11,23 @@
       "jadwal": [
         {
           "dosis": "1",
-          "usia": "0-24 jam setelah lahir (monovalen)"
+          "usia": "0-24 jam setelah lahir (monovalen)",
+          "target_bulan": 0
         },
         {
           "dosis": "2",
-          "usia": "2 bulan (kombinasi pentavalen)"
+          "usia": "2 bulan (kombinasi pentavalen)",
+          "target_bulan": 2
         },
         {
           "dosis": "3",
-          "usia": "3 bulan"
+          "usia": "3 bulan",
+          "target_bulan": 3
         },
         {
           "dosis": "4",
-          "usia": "4 bulan"
+          "usia": "4 bulan",
+          "target_bulan": 4
         }
       ],
       "catatan": "Bayi BB lahir <2000g: dosis pertama ditunda ke usia 1 bulan kecuali ibu HBsAg positif. Booster tambahan usia 18 bulan (rekomendasi IDAI)."
@@ -34,19 +38,23 @@
       "jadwal": [
         {
           "dosis": "1",
-          "usia": "saat lahir"
+          "usia": "saat lahir",
+          "target_bulan": 0
         },
         {
           "dosis": "2",
-          "usia": "2 bulan"
+          "usia": "2 bulan",
+          "target_bulan": 2
         },
         {
           "dosis": "3",
-          "usia": "3 bulan"
+          "usia": "3 bulan",
+          "target_bulan": 3
         },
         {
           "dosis": "4",
-          "usia": "4 bulan"
+          "usia": "4 bulan",
+          "target_bulan": 4
         }
       ]
     },
@@ -56,11 +64,13 @@
       "jadwal": [
         {
           "dosis": "IPV1",
-          "usia": "4 bulan"
+          "usia": "4 bulan",
+          "target_bulan": 4
         },
         {
           "dosis": "IPV2",
-          "usia": "9 bulan (tambahan sejak perluasan 2024)"
+          "usia": "9 bulan (tambahan sejak perluasan 2024)",
+          "target_bulan": 9
         }
       ]
     },
@@ -70,7 +80,8 @@
       "jadwal": [
         {
           "dosis": "1",
-          "usia": "0-1 bulan"
+          "usia": "0-1 bulan",
+          "target_bulan": 1
         }
       ],
       "catatan": "Bayi dari ibu TB aktif: ditunda sampai terbukti bayi tidak terinfeksi TB."
@@ -81,19 +92,23 @@
       "jadwal": [
         {
           "dosis": "1",
-          "usia": "2 bulan"
+          "usia": "2 bulan",
+          "target_bulan": 2
         },
         {
           "dosis": "2",
-          "usia": "3 bulan"
+          "usia": "3 bulan",
+          "target_bulan": 3
         },
         {
           "dosis": "3",
-          "usia": "4 bulan"
+          "usia": "4 bulan",
+          "target_bulan": 4
         },
         {
           "dosis": "booster 1",
-          "usia": "18 bulan"
+          "usia": "18 bulan",
+          "target_bulan": 18
         },
         {
           "dosis": "booster 2 (Td/Tdap)",
@@ -107,15 +122,18 @@
       "jadwal": [
         {
           "dosis": "1",
-          "usia": "2 bulan"
+          "usia": "2 bulan",
+          "target_bulan": 2
         },
         {
           "dosis": "2",
-          "usia": "3 bulan (jadwal program nasional) / 4 bulan (rekomendasi IDAI)"
+          "usia": "3 bulan (jadwal program nasional) / 4 bulan (rekomendasi IDAI)",
+          "target_bulan": 3
         },
         {
           "dosis": "booster",
-          "usia": "12 bulan (program nasional) / 12-15 bulan (IDAI)"
+          "usia": "12 bulan (program nasional) / 12-15 bulan (IDAI)",
+          "target_bulan": 12
         }
       ]
     },
@@ -125,11 +143,13 @@
       "jadwal": [
         {
           "dosis": "1",
-          "usia": "6-12 minggu"
+          "usia": "6-12 minggu",
+          "target_minggu": 6
         },
         {
           "dosis": "2",
-          "usia": "+4-10 minggu dari dosis 1"
+          "usia": "+4-10 minggu dari dosis 1",
+          "target_minggu": 10
         },
         {
           "dosis": "3",
@@ -144,11 +164,13 @@
       "jadwal": [
         {
           "dosis": "1",
-          "usia": "9 bulan"
+          "usia": "9 bulan",
+          "target_bulan": 9
         },
         {
           "dosis": "2",
-          "usia": "15-18 bulan (MR/MMR)"
+          "usia": "15-18 bulan (MR/MMR)",
+          "target_bulan": 15
         },
         {
           "dosis": "3",
@@ -236,5 +258,6 @@
         }
       ]
     }
-  ]
+  ],
+  "catatan_target": "target_bulan / target_minggu = usia (dihitung dari tanggal lahir) saat pengingat imunisasi otomatis dibuat. Dosis tanpa target (bersyarat atau usia sekolah) tidak dibuatkan pengingat otomatis."
 }

@@ -34,6 +34,10 @@ data class VaccineSchedule(
 data class VaccineDose(
     val dosis: String,
     val usia: String,
+    /** Usia target (bulan) untuk pengingat otomatis; null = tidak dibuatkan pengingat otomatis. */
+    val target_bulan: Int? = null,
+    /** Usia target (minggu), dipakai untuk dosis yang jadwalnya dalam minggu (mis. Rotavirus). */
+    val target_minggu: Int? = null,
 )
 
 // ---------------------------------------------------------------------
