@@ -32,6 +32,9 @@ import androidx.compose.material.icons.filled.ExpandLess
 import androidx.compose.material.icons.filled.ExpandMore
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Lightbulb
+import androidx.compose.material.icons.filled.SoupKitchen
+import androidx.compose.material.icons.filled.ShoppingBasket
+import androidx.compose.material.icons.filled.ArrowDropUp
 import androidx.compose.material.icons.filled.Restaurant
 import androidx.compose.material.icons.filled.Wallet
 import androidx.compose.material3.Card
@@ -329,6 +332,8 @@ private fun StatusRow(label: String, status: StatusGizi) {
 
 @Composable
 private fun TargetGiziCard(hasil: KalkulatorGiziHasil) {
+    val kaloriDinaikkan = hasil.faktorKalori > 1.0
+    val proteinDinaikkan = hasil.proteinPersenEnergi > 0.125
     Card(
         modifier = Modifier.fillMaxWidth(),
         colors = CardDefaults.cardColors(containerColor = SurfaceNeutral),
@@ -338,35 +343,48 @@ private fun TargetGiziCard(hasil: KalkulatorGiziHasil) {
     ) {
         Column(Modifier.padding(18.dp)) {
             Text("Target gizi harian (estimasi)", style = MaterialTheme.typography.titleSmall, color = TextPrimary)
-            Row(Modifier.padding(top = 14.dp), horizontalArrangement = Arrangement.spacedBy(20.dp)) {
-                MacroValue("Energi", "${hasil.targetKkal}", "kkal")
-                MacroValue("Protein", "%.0f".format(hasil.targetProteinGr), "gr")
-                MacroValue("Lemak", "%.0f".format(hasil.targetLemakGr), "gr")
-                MacroValue("Karbo", "%.0f".format(hasil.targetKarboGr), "gr")
+
+            // Satu blok per zat gizi - warna mengikuti palet panduan porsi
+            Row(
+                Modifier.fillMaxWidth().padding(top = 14.dp).height(IntrinsicSize.Min),
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+            ) {
+                MacroTile("Energi", "${hasil.targetKkal}", "kkal", Color(0xFFFDE7EE), PinkPrimary, naik = kaloriDinaikkan, modifier = Modifier.weight(1f).fillMaxHeight())
+                MacroTile("Protein", "%.0f".format(hasil.targetProteinGr), "gr", Color(0xFFF1ECE2), Color(0xFF9C7A52), naik = proteinDinaikkan, modifier = Modifier.weight(1f).fillMaxHeight())
+                MacroTile("Lemak", "%.0f".format(hasil.targetLemakGr), "gr", Color(0xFFFFECDD), Color(0xFFE67A2E), modifier = Modifier.weight(1f).fillMaxHeight())
+                MacroTile("Karbo", "%.0f".format(hasil.targetKarboGr), "gr", Color(0xFFFFF4E0), Color(0xFFD9922A), modifier = Modifier.weight(1f).fillMaxHeight())
             }
-            val kaloriDinaikkan = hasil.faktorKalori > 1.0
-            val proteinDinaikkan = hasil.proteinPersenEnergi > 0.125
+
             if (kaloriDinaikkan || proteinDinaikkan) {
-                Column(Modifier.padding(top = 12.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
-                    if (kaloriDinaikkan) {
+                Row(
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(top = 12.dp)
+                        .background(PinkSoft, RoundedCornerShape(16.dp))
+                        .padding(14.dp),
+                ) {
+                    Icon(Icons.Filled.Lightbulb, contentDescription = null, tint = PinkPrimaryDark, modifier = Modifier.size(18.dp))
+                    Column(Modifier.padding(start = 10.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                        if (kaloriDinaikkan) {
+                            Text(
+                                "Energi dinaikkan ${"%.0f".format((hasil.faktorKalori - 1.0) * 100)}% karena berat/usia di bawah normal.",
+                                style = MaterialTheme.typography.bodySmall,
+                                color = PinkPrimaryDark,
+                            )
+                        }
+                        if (proteinDinaikkan) {
+                            Text(
+                                "Porsi protein dinaikkan (~${"%.0f".format(hasil.proteinPersenEnergi * 100)}% energi) karena tinggi/usia di bawah normal.",
+                                style = MaterialTheme.typography.bodySmall,
+                                color = PinkPrimaryDark,
+                            )
+                        }
                         Text(
-                            "Energi dinaikkan ${"%.0f".format((hasil.faktorKalori - 1.0) * 100)}% karena berat/usia di bawah normal",
+                            "Menu di bawah diurutkan sesuai kebutuhan ini. Sebaiknya konsultasikan hasilnya ke tenaga kesehatan atau posyandu.",
                             style = MaterialTheme.typography.bodySmall,
                             color = TextSecondary,
                         )
                     }
-                    if (proteinDinaikkan) {
-                        Text(
-                            "Porsi protein dinaikkan (~${"%.0f".format(hasil.proteinPersenEnergi * 100)}% energi) karena tinggi/usia di bawah normal",
-                            style = MaterialTheme.typography.bodySmall,
-                            color = TextSecondary,
-                        )
-                    }
-                    Text(
-                        "Menu di bawah diurutkan sesuai kebutuhan ini. Sebaiknya konsultasikan hasilnya ke tenaga kesehatan atau posyandu.",
-                        style = MaterialTheme.typography.bodySmall,
-                        color = TextSecondary,
-                    )
                 }
             }
             Text(
@@ -380,10 +398,33 @@ private fun TargetGiziCard(hasil: KalkulatorGiziHasil) {
 }
 
 @Composable
-private fun MacroValue(label: String, value: String, satuan: String) {
-    Column {
-        Text(label, style = MaterialTheme.typography.labelSmall, color = TextMuted)
-        Text(value, style = MaterialTheme.typography.titleMedium, color = TextPrimary, modifier = Modifier.padding(top = 2.dp))
+private fun MacroTile(
+    label: String,
+    value: String,
+    satuan: String,
+    bg: Color,
+    accent: Color,
+    modifier: Modifier = Modifier,
+    naik: Boolean = false,
+) {
+    Column(
+        modifier
+            .background(bg, RoundedCornerShape(14.dp))
+            .padding(vertical = 12.dp, horizontal = 6.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Text(label, style = MaterialTheme.typography.labelSmall, color = TextSecondary)
+            if (naik) {
+                Icon(
+                    Icons.Filled.ArrowDropUp,
+                    contentDescription = "dinaikkan",
+                    tint = accent,
+                    modifier = Modifier.size(16.dp),
+                )
+            }
+        }
+        Text(value, style = MaterialTheme.typography.titleLarge, color = accent, modifier = Modifier.padding(top = 4.dp))
         Text(satuan, style = MaterialTheme.typography.labelSmall, color = TextMuted)
     }
 }
@@ -701,25 +742,25 @@ private fun RecipeCard(recipe: Recipe) {
 
             if (expanded) {
                 if (recipe.bahan.isNotEmpty()) {
-                    Text(
-                        "Bahan",
-                        style = MaterialTheme.typography.titleSmall,
-                        color = TextPrimary,
-                        modifier = Modifier.padding(top = 16.dp, bottom = 8.dp),
-                    )
-                    recipe.bahan.forEach {
-                        Text("• $it", style = MaterialTheme.typography.bodyMedium, color = TextSecondary, modifier = Modifier.padding(bottom = 3.dp))
+                    DetailResepBlok(
+                        icon = Icons.Filled.ShoppingBasket,
+                        judul = "Bahan",
+                        jumlah = "${recipe.bahan.size} bahan",
+                        bg = Color(0xFFF7F3EC),
+                        modifier = Modifier.padding(top = 16.dp),
+                    ) {
+                        recipe.bahan.forEach { BahanRow(it) }
                     }
                 }
                 if (recipe.cara_buat.isNotEmpty()) {
-                    Text(
-                        "Cara buat",
-                        style = MaterialTheme.typography.titleSmall,
-                        color = TextPrimary,
-                        modifier = Modifier.padding(top = 16.dp, bottom = 8.dp),
-                    )
-                    recipe.cara_buat.forEachIndexed { i, step ->
-                        Text("${i + 1}. $step", style = MaterialTheme.typography.bodyMedium, color = TextSecondary, modifier = Modifier.padding(bottom = 6.dp))
+                    DetailResepBlok(
+                        icon = Icons.Filled.SoupKitchen,
+                        judul = "Cara buat",
+                        jumlah = "${recipe.cara_buat.size} langkah",
+                        bg = PinkSoft,
+                        modifier = Modifier.padding(top = 10.dp),
+                    ) {
+                        recipe.cara_buat.forEachIndexed { i, step -> LangkahRow(i + 1, step) }
                     }
                 }
                 if (recipe.bahan.isEmpty() && recipe.cara_buat.isEmpty()) {
@@ -732,5 +773,64 @@ private fun RecipeCard(recipe: Recipe) {
                 }
             }
         }
+    }
+}
+
+/** Blok detail resep (Bahan / Cara buat): latar lembut, ikon, judul, dan jumlah item. */
+@Composable
+private fun DetailResepBlok(
+    icon: androidx.compose.ui.graphics.vector.ImageVector,
+    judul: String,
+    jumlah: String,
+    bg: Color,
+    modifier: Modifier = Modifier,
+    content: @Composable () -> Unit,
+) {
+    Column(
+        modifier
+            .fillMaxWidth()
+            .background(bg, RoundedCornerShape(16.dp))
+            .padding(14.dp),
+    ) {
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Box(Modifier.size(30.dp).background(Color.White, CircleShape), contentAlignment = Alignment.Center) {
+                Icon(icon, contentDescription = null, tint = PinkPrimaryDark, modifier = Modifier.size(17.dp))
+            }
+            Text(judul, style = MaterialTheme.typography.titleSmall, color = TextPrimary, modifier = Modifier.padding(start = 10.dp).weight(1f))
+            Text(jumlah, style = MaterialTheme.typography.labelSmall, color = TextMuted)
+        }
+        Column(Modifier.padding(top = 12.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            content()
+        }
+    }
+}
+
+@Composable
+private fun BahanRow(teks: String) {
+    // "Bumbu halus: 2 siung ..." -> label sebelum titik dua ditebalkan sedikit
+    val idx = teks.indexOf(':')
+    val isi = if (idx in 1..20) {
+        androidx.compose.ui.text.buildAnnotatedString {
+            pushStyle(androidx.compose.ui.text.SpanStyle(color = TextPrimary, fontWeight = androidx.compose.ui.text.font.FontWeight.Medium))
+            append(teks.substring(0, idx + 1))
+            pop()
+            append(teks.substring(idx + 1))
+        }
+    } else {
+        androidx.compose.ui.text.AnnotatedString(teks)
+    }
+    Row {
+        Box(Modifier.padding(top = 8.dp).size(6.dp).background(PinkPrimary, CircleShape))
+        Text(isi, style = MaterialTheme.typography.bodyMedium, color = TextSecondary, modifier = Modifier.padding(start = 10.dp))
+    }
+}
+
+@Composable
+private fun LangkahRow(nomor: Int, teks: String) {
+    Row {
+        Box(Modifier.size(24.dp).background(PinkPrimary, CircleShape), contentAlignment = Alignment.Center) {
+            Text("$nomor", style = MaterialTheme.typography.labelMedium, color = Color.White)
+        }
+        Text(teks, style = MaterialTheme.typography.bodyMedium, color = TextSecondary, modifier = Modifier.padding(start = 10.dp, top = 2.dp))
     }
 }
