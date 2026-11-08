@@ -143,12 +143,13 @@ fun ProfilScreen(onTambahProfil: () -> Unit) {
                         }
                     } else {
                         if (state.referenceRows.isNotEmpty()) {
-                            SectionHeader("Grafik pertumbuhan (berat/usia)")
+                            SectionHeader("Grafik pertumbuhan")
+                            var grafikTinggi by remember { mutableStateOf(false) }
                             val actualPoints = state.growthRecords.mapNotNull { record ->
                                 val lahir = profile.tanggalLahirMillis ?: return@mapNotNull null
-                                val berat = record.beratKg ?: return@mapNotNull null
+                                val nilai = (if (grafikTinggi) record.panjangCm else record.beratKg) ?: return@mapNotNull null
                                 val usiaBulan = DateUtils.usiaBulanDari(lahir, record.tanggalMillis).toDouble()
-                                usiaBulan to berat
+                                usiaBulan to nilai
                             }
                             Card(
                                 modifier = Modifier.fillMaxWidth(),
@@ -157,11 +158,19 @@ fun ProfilScreen(onTambahProfil: () -> Unit) {
                                 border = BorderStroke(1.dp, PinkSoftStrong),
                                 elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
                             ) {
-                                GrowthChart(
-                                    referenceRows = state.referenceRows,
-                                    actualPoints = actualPoints,
-                                    modifier = Modifier.padding(16.dp),
-                                )
+                                Column(Modifier.padding(16.dp)) {
+                                    Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                                        PilihanGrafikChip("Berat", selected = !grafikTinggi) { grafikTinggi = false }
+                                        PilihanGrafikChip("Tinggi", selected = grafikTinggi) { grafikTinggi = true }
+                                    }
+                                    GrowthChart(
+                                        referenceRows = if (grafikTinggi) state.referenceRowsTinggi else state.referenceRows,
+                                        actualPoints = actualPoints,
+                                        satuan = if (grafikTinggi) "cm" else "kg",
+                                        modifier = Modifier.padding(top = 12.dp),
+                                    )
+                                    GrowthChartLegend(Modifier.padding(top = 10.dp))
+                                }
                             }
                         }
 
@@ -224,6 +233,20 @@ fun ProfilScreen(onTambahProfil: () -> Unit) {
             },
         )
     }
+}
+
+@Composable
+private fun PilihanGrafikChip(label: String, selected: Boolean, onClick: () -> Unit) {
+    FilterChip(
+        selected = selected,
+        onClick = onClick,
+        label = { Text(label) },
+        shape = androidx.compose.foundation.shape.RoundedCornerShape(50),
+        colors = FilterChipDefaults.filterChipColors(
+            selectedContainerColor = PinkPrimary,
+            selectedLabelColor = androidx.compose.ui.graphics.Color.White,
+        ),
+    )
 }
 
 @Composable

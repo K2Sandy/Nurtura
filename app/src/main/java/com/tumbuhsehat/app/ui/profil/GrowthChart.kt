@@ -1,8 +1,15 @@
 package com.tumbuhsehat.app.ui.profil
 
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.ui.Alignment
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
@@ -32,6 +39,7 @@ fun GrowthChart(
     referenceRows: List<GrowthReferenceRow>,
     actualPoints: List<Pair<Double, Double>>, // (usia dalam bulan, nilai terukur)
     modifier: Modifier = Modifier,
+    satuan: String = "kg",
 ) {
     val sortedRef = referenceRows.sortedBy { it.x }
     val sortedActual = actualPoints.sortedBy { it.first }
@@ -132,10 +140,38 @@ fun GrowthChart(
             isAntiAlias = true
         }
         drawContext.canvas.nativeCanvas.apply {
-            drawText("${yMin.toInt()}", 4.dp.toPx(), yToPx(yMin), labelPaint)
-            drawText("${yMax.toInt()}", 4.dp.toPx(), yToPx(yMax) + 10.sp.toPx(), labelPaint)
+            drawText("${yMin.toInt()} $satuan", 0f, yToPx(yMin), labelPaint)
+            drawText("${yMax.toInt()} $satuan", 0f, yToPx(yMax) + 10.sp.toPx(), labelPaint)
             drawText("${xMin.toInt()} bln", paddingLeft, size.height - 4.dp.toPx(), labelPaint)
             drawText("${xMax.toInt()} bln", size.width - paddingRight - 30.dp.toPx(), size.height - 4.dp.toPx(), labelPaint)
         }
+    }
+}
+
+/** Keterangan grafik dalam satu baris: garis anak, median WHO, rentang normal WHO. */
+@Composable
+fun GrowthChartLegend(modifier: Modifier = Modifier) {
+    Row(modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(14.dp), verticalAlignment = Alignment.CenterVertically) {
+        LegendItem("Anak") {
+            drawLine(PinkPrimary, Offset(0f, center.y), Offset(size.width, center.y), strokeWidth = 2.5.dp.toPx())
+            drawCircle(PinkPrimary, radius = 3.dp.toPx(), center = center)
+        }
+        LegendItem("Median WHO") {
+            drawLine(
+                Color(0xFF898781), Offset(0f, center.y), Offset(size.width, center.y),
+                strokeWidth = 1.5.dp.toPx(), pathEffect = PathEffect.dashPathEffect(floatArrayOf(6f, 6f)),
+            )
+        }
+        LegendItem("Rentang normal") {
+            drawRect(Color(0xFFB4B2A9).copy(alpha = 0.35f))
+        }
+    }
+}
+
+@Composable
+private fun LegendItem(label: String, swatch: androidx.compose.ui.graphics.drawscope.DrawScope.() -> Unit) {
+    Row(verticalAlignment = Alignment.CenterVertically) {
+        Canvas(Modifier.size(width = 18.dp, height = 10.dp), onDraw = swatch)
+        Text(label, style = MaterialTheme.typography.labelSmall, color = TextMuted, modifier = Modifier.padding(start = 6.dp))
     }
 }
