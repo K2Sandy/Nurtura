@@ -14,12 +14,8 @@ import kotlin.math.roundToInt
  * for matching recipe recommendations from the existing resep database - so
  * nothing here duplicates data that's already in the app.
  *
- * Energy targets below are rough age-band estimates (not the full official
- * AKG table per individual age/weight) - good enough to drive the
- * calculator and recommendations, but flagged here same as other
- * approximated figures in this project: verify against the real AKG
- * (Permenkes No. 28/2019) tables before this is relied on for real medical
- * guidance - see README_sumber_data.md.
+ * Energy targets below follow the AKG age groups (Permenkes RI No. 28/2019):
+ * 0-5 months 550, 6-11 months 800, 12-47 months 1,350, 48-59 months 1,400 kcal/day.
  *
  * Status gizi ikut mempengaruhi hasil (bukan cuma usia):
  *  - Berat/usia Kurang / Sangat kurang  -> target kalori dinaikkan (catch-up growth):
@@ -95,13 +91,15 @@ class NutritionCalculator(
         )
     }
 
-    /** Estimasi energi harian (kkal) per kelompok usia - lihat catatan di kelas ini soal akurasi. */
+    /**
+     * Target energi dasar harian (kkal) per kelompok usia, sesuai Angka Kecukupan Gizi
+     * (Permenkes RI No. 28 Tahun 2019): 0-5 bln 550, 6-11 bln 800, 1-3 thn 1.350, 4-6 thn 1.400.
+     */
     private fun targetEnergiHarian(usiaBulan: Int): Int = when {
         usiaBulan < 6 -> 550
-        usiaBulan in 6..8 -> 750
-        usiaBulan in 9..11 -> 900
-        usiaBulan in 12..23 -> 1150
-        else -> 1350
+        usiaBulan in 6..11 -> 800
+        usiaBulan in 12..47 -> 1350
+        else -> 1400
     }
 
     /** Pengali target kalori berdasarkan status berat/usia (catch-up growth). */
