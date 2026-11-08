@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Full-color KawalSehat logo: used in-app (top bar) and as the legacy launcher
+<!-- Full-color KawalTumbuh logo: used in-app (top bar) and as the legacy launcher
      icon on Android 7.x. Android 8+ uses the adaptive icon in
      drawable-anydpi-v26/ic_launcher.xml - keep the two visually in sync. -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"

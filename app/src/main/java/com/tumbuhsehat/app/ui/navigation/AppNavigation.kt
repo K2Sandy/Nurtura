@@ -121,7 +121,7 @@ private fun AppTopBar() {
                         modifier = Modifier.size(30.dp),
                     )
                     Text(
-                        "KawalSehat",
+                        "KawalTumbuh",
                         fontWeight = FontWeight.Bold,
                         color = PinkPrimaryDark,
                         style = MaterialTheme.typography.titleLarge,

@@ -23,7 +23,7 @@ object NotificationHelper {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = NotificationChannel(
                 CHANNEL_ID,
-                "Pengingat KawalSehat",
+                "Pengingat KawalTumbuh",
                 NotificationManager.IMPORTANCE_HIGH,
             ).apply {
                 description = "Pengingat jadwal imunisasi, checkup, dan gizi"
@@ -43,7 +43,7 @@ object NotificationHelper {
 class ReminderWorker(appContext: Context, params: WorkerParameters) : CoroutineWorker(appContext, params) {
 
     override suspend fun doWork(): Result {
-        val title = inputData.getString(KEY_TITLE) ?: "Pengingat KawalSehat"
+        val title = inputData.getString(KEY_TITLE) ?: "Pengingat KawalTumbuh"
         val body = inputData.getString(KEY_BODY) ?: ""
         val notificationId = inputData.getInt(KEY_NOTIF_ID, System.currentTimeMillis().toInt())
 

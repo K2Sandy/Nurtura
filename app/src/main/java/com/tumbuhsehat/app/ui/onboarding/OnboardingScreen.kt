@@ -79,7 +79,7 @@ fun OnboardingScreen(onSelesai: () -> Unit) {
         IconBadge(Icons.Filled.Favorite, size = 72.dp, background = PinkSoft, tint = PinkPrimary)
 
         Text(
-            "Selamat datang di KawalSehat",
+            "Selamat datang di KawalTumbuh",
             style = MaterialTheme.typography.headlineMedium,
             color = TextPrimary,
             textAlign = TextAlign.Center,
