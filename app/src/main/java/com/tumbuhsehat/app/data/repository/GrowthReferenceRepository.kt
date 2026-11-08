@@ -37,8 +37,14 @@ enum class StatusGizi(val label: String) {
 }
 
 /**
- * Reads the CDC-mirrored WHO Child Growth Standards CSVs (bundled in
- * assets/who_growth) and provides z-score / status calculations.
+ * Reads the WHO Child Growth Standards CSVs (bundled in assets/who_growth)
+ * and provides z-score / status calculations.
+ *
+ * Coverage: 0-60 months. Rows 0-24 are the CDC mirror of the WHO 0-2 y
+ * tables (recumbent length); rows 25-60 come from the official WHO 2-5 y
+ * LMS tables (weight-for-age, head circumference, and standing
+ * height-for-age for the length/height file). Percentile columns for the
+ * added rows are derived from L, M, S the same way as the original rows.
  *
  * NOTE on classification thresholds: this uses a simplified, unified
  * <-3 / -3..-2 / -2..2 / >2 SD banding across all four indicators for the

@@ -11,6 +11,7 @@ import com.tumbuhsehat.app.data.repository.GrowthReferenceRow
 import com.tumbuhsehat.app.data.repository.JenisKelamin
 import com.tumbuhsehat.app.data.repository.JenisUkuran
 import com.tumbuhsehat.app.data.repository.UserRepository
+import com.tumbuhsehat.app.util.DateUtils
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.combine
@@ -49,7 +50,12 @@ class ProfilViewModel(
     ) { allProfiles, (activeProfile, growthRecords, immunizations) ->
         val referenceRows = if (activeProfile?.tipe == TipeProfil.ANAK && activeProfile.jenisKelamin != null) {
             val gender = if (activeProfile.jenisKelamin == "LAKI_LAKI") JenisKelamin.LAKI_LAKI else JenisKelamin.PEREMPUAN
+            // Tabel WHO sekarang 0-60 bulan. Anak <= 2 tahun tetap ditampilkan pada sumbu 0-24 bulan
+            // (tampilan grafik sama seperti sebelumnya); di atas 2 tahun sumbu diperlebar ke 0-60 bulan.
+            val usiaBulan = activeProfile.tanggalLahirMillis?.let { DateUtils.usiaBulanDari(it) } ?: 0
+            val batasBulan = if (usiaBulan <= 24) 24.0 else 60.0
             growthReferenceRepository.getReferenceRows(gender, JenisUkuran.BERAT_USIA)
+                .filter { it.x <= batasBulan }
         } else {
             emptyList()
         }
