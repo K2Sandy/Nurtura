@@ -227,12 +227,17 @@ enum class BottomNavDestination(val route: String, val label: String, val icon: 
 }
 
 @Composable
-fun PageHeader(icon: ImageVector, title: String, modifier: Modifier = Modifier) {
+fun PageHeader(
+    icon: ImageVector,
+    title: String,
+    modifier: Modifier = Modifier,
+    bottomPadding: androidx.compose.ui.unit.Dp = 20.dp,
+) {
     Column(
         modifier
             .fillMaxWidth()
             .padding(horizontal = 20.dp)
-            .padding(top = 14.dp, bottom = 20.dp),
+            .padding(top = 14.dp, bottom = bottomPadding),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         IconBadge(icon, size = 72.dp)

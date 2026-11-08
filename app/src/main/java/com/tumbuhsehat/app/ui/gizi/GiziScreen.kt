@@ -92,13 +92,12 @@ fun GiziScreen() {
     )
     val state by viewModel.uiState.collectAsState()
 
-    Column(Modifier.fillMaxSize()) {
-        PageHeader(
-            icon = if (state.isPregnancy) Icons.Filled.Favorite else Icons.Filled.Calculate,
-            title = if (state.isPregnancy) "Gizi" else "Kalkulator Gizi Anak",
-        )
+    val headerIcon = if (state.isPregnancy) Icons.Filled.Favorite else Icons.Filled.Calculate
+    val headerTitle = if (state.isPregnancy) "Gizi" else "Kalkulator Gizi Anak"
 
+    Column(Modifier.fillMaxSize()) {
         if (state.loading) {
+            PageHeader(icon = headerIcon, title = headerTitle)
             Text(
                 "Memuat...",
                 style = MaterialTheme.typography.bodyMedium,
@@ -112,6 +111,9 @@ fun GiziScreen() {
             contentPadding = PaddingValues(horizontal = 16.dp, vertical = 0.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
+            // Header ikut scroll (collapse on scroll) - bar KawalTumbuh di atas tetap diam
+            item { PageHeader(icon = headerIcon, title = headerTitle, bottomPadding = 8.dp) }
+
             if (state.isPregnancy) {
                 state.portionGuide?.let { guide ->
                     item { PortionGuideCard(trimester = state.trimester, guide = guide) }

@@ -79,15 +79,15 @@ fun ProfilScreen(onTambahProfil: () -> Unit) {
     var showTandaiLahir by remember { mutableStateOf(false) }
 
     Column(Modifier.fillMaxSize()) {
-        // Header tetap diam di atas - tidak ikut scroll, sama seperti Kalender & Gizi
-        PageHeader(Icons.Filled.Person, "Profil")
-
         Column(
             Modifier
                 .fillMaxSize()
                 .verticalScroll(rememberScrollState())
                 .padding(bottom = 24.dp),
         ) {
+            // Header ikut scroll (collapse on scroll), sama seperti Kalender & Gizi
+            PageHeader(Icons.Filled.Person, "Profil")
+
             ProfileSwitcherRow(
                 profiles = state.allProfiles,
                 activeId = state.activeProfile?.id,

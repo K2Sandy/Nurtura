@@ -67,9 +67,10 @@ fun KalenderScreen() {
     var itemUntukDijadwalkan by remember { mutableStateOf<ImmunizationRecordEntity?>(null) }
 
     Column(Modifier.fillMaxSize()) {
-        PageHeader(Icons.Filled.CalendarMonth, "Kalender")
-
         LazyColumn(contentPadding = PaddingValues(horizontal = 16.dp, vertical = 0.dp)) {
+            // Header ikut scroll (collapse on scroll) - bar KawalTumbuh di atas tetap diam
+            item { PageHeader(Icons.Filled.CalendarMonth, "Kalender") }
+
             if (state.reminders.isEmpty() && !state.isAnak) {
                 item {
                     EmptyState(
