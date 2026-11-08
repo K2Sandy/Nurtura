@@ -368,7 +368,7 @@ private fun TargetGiziCard(hasil: KalkulatorGiziHasil) {
                 }
             }
             Text(
-                "Estimasi umum per kelompok usia, bukan pengganti tabel AKG resmi",
+                "Mengacu AKG (Permenkes No. 28 Tahun 2019) per kelompok usia",
                 style = MaterialTheme.typography.labelSmall,
                 color = TextMuted,
                 modifier = Modifier.padding(top = 12.dp),
